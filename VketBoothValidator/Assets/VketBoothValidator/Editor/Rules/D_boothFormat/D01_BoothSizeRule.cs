@@ -8,9 +8,12 @@ namespace VketTools
 {
     /// <summary>
     /// D.ブース規定
-    /// 01.ブース寸法は幅4m×奥行き3m×高さ5m
-    /// 初期状態でアクティブなオブジェクトのRenderer.boundsが(X,Y,Z)=(4,5,3)以内にあることを検証する
+    /// 01.ブース寸法は幅4m×奥行き4m×高さ5m
+    /// 初期状態でアクティブなオブジェクトのRenderer.boundsが(X,Y,Z)=(4,5,4)以内にあることを検証する
     /// ルートオブジェクトがブースに含まれないオブジェクトは無視
+    /// 
+    /// 落マケようにブースサイズのみを改変
+    /// 
     /// </summary>
     public class BoothSizeRule : BaseRule
     {
