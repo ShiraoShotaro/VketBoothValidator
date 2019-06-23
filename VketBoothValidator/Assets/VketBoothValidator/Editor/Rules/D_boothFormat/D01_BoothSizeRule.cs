@@ -32,7 +32,7 @@ namespace VketTools
         {
             //初期化
             base.Validate();
-            Vector3 maxBoundsSize = new Vector3(4, 5, 3);
+            Vector3 maxBoundsSize = new Vector3(4, 5, 4);
             //検証ロジック
 
             Scene scene = SceneManager.GetSceneByPath(AssetDatabase.GUIDToAssetPath(options.sceneGuid));
