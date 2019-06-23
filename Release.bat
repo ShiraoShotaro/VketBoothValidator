@@ -5,7 +5,7 @@ if "%1"=="" (
  set  VERSION=%1
 )
 echo VERSION: %VERSION%
-set UNITY_PATH="C:\Program Files\Unity\Hub\Editor\2017.4.15f1\Editor\Unity.exe"
+set UNITY_PATH="C:\Program Files\Unity_2017_4_15f1\Editor\Unity.exe"
 set LOG_FILE="release.log"
 set PACKAGE_NAME="vketBoothValidator-%VERSION%.unitypackage"
 set EXPORT_PACKAGES="Assets\VketBoothValidator"
@@ -24,3 +24,4 @@ copy /Y LICENSE Release\VketBoothValidator
 copy /Y README.md Release\VketBoothValidator\README.txt
 copy /Y ForDevelopper.md Release\VketBoothValidator\ForDevelopper.txt
 subst Z: /D
+pause
