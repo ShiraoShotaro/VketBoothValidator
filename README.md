@@ -1,4 +1,17 @@
-﻿Vket booth validator 2019.3d
+﻿# 落選マーケット用バリデーター
+
+## Vket booth validatorからの変更点
+
+- ブースサイズ制限が4x5x4に変更されています。
+
+以下元の説明文を転載します。後日以下の文章は落マケ用に変更されます。
+
+## ダウンロード
+
+[ダウンロードページ](https://github.com/ShiraoShotaro/VketBoothValidator/releases/)
+
+# Vket booth validator 2019.3d
+
 ====
 Vケットのブースが入稿ルールに沿っているかチェックする入稿支援ツール(非公式)です。
 
@@ -9,7 +22,7 @@ Vケットのブースが入稿ルールに沿っているかチェックする�
 - このツールは非公式です。全ての場合においてバーチャルマーケット運営の判断が優先されます。
 
 ## インストール
-[ダウンロードページ](https://github.com/Kozu-vr/VketBoothValidator/releases/) からVketBoothValidator.zipをダウンロードし、解凍して中にあるUnitypackageを検証したいブースのシーンがあるプロジェクトにインポートしてください。
+[ダウンロードページ](https://github.com/ShiraoShotaro/VketBoothValidator/releases/) からVketBoothValidator.zipをダウンロードし、解凍して中にあるUnitypackageを検証したいブースのシーンがあるプロジェクトにインポートしてください。
 
 ## 使い方
 - ブースの作成配置を行いUnitypackageにエクスポートする直前の状態にします。
