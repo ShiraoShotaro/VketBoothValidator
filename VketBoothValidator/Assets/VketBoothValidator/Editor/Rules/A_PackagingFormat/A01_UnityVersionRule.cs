@@ -10,7 +10,7 @@ namespace VketTools
 {
     /// <summary>
     /// A.提出形式
-    /// 01:Unity 2017.4.15f1で作成すること
+    /// 01:Unity 2017.4.28f1で作成すること
     /// </summary>
     public class UnityVersionRule : BaseRule
     {
@@ -32,7 +32,7 @@ namespace VketTools
             base.Validate();
             Result result;
             string actualVer = Application.unityVersion;
-            string expectedVer = "2017.4.15f1";
+            string expectedVer = "2017.4.28f1";
             AddResultLog("Unity version:" + actualVer);
             if (Application.unityVersion == expectedVer)
             {

@@ -44,9 +44,8 @@ namespace VketTools
             List<string> inValidObjectName = new List<string>();
 
             GameObject rootBoothObject = Utils.GetInstance().GetRootBoothObject();
-            GameObject occluderStatic = null;
-            GameObject occludeeStatic = null;
-            GameObject dynamic = null;
+            GameObject staticObj = null;
+            GameObject dynamicObj = null;
             if (rootBoothObject == null)
             {
                 AddResultLog("ルートオブジェクトがありません。");
@@ -57,14 +56,11 @@ namespace VketTools
                 GameObject go = child.gameObject;
                 switch (go.name)
                 {
-                    case "Occluder Static":
-                        occluderStatic = go;
-                        break;
-                    case "Occludee Static":
-                        occludeeStatic = go;
+                    case "Static":
+                        staticObj = go;
                         break;
                     case "Dynamic":
-                        dynamic = go;
+                        dynamicObj = go;
                         break;
                     default:
                         break;
@@ -72,9 +68,9 @@ namespace VketTools
             }
 
             //'Occluder Static'以下のオブジェクト設定がすべて'Static'設定になっている（Lightmap staticは考慮しない）
-            if (occluderStatic != null)
+            if (staticObj != null)
             {
-                Transform[] childTransforms = occluderStatic.GetComponentsInChildren<Transform>();
+                Transform[] childTransforms = staticObj.GetComponentsInChildren<Transform>();
                 foreach (Transform transform in childTransforms)
                 {
                     StaticEditorFlags flags = GameObjectUtility.GetStaticEditorFlags(transform.gameObject);
@@ -92,7 +88,7 @@ namespace VketTools
             }
             else
             {
-                AddResultLog("Occluder Staticオブジェクトがありません。");
+                AddResultLog("Staticオブジェクトがありません。");
                 dirtflg = true;
             }
             if (inValidObjectName.Count() > 0)
@@ -105,39 +101,12 @@ namespace VketTools
                 }
             }
 
-            //'Occludee Static'以下のオブジェクト設定がすべて'Occludee Static'
-            inValidObjectName = new List<string>();
-            if (occludeeStatic != null)
-            {
-                Transform[] childTransforms = occludeeStatic.GetComponentsInChildren<Transform>();
-                foreach (Transform transform in childTransforms)
-                {
-                    StaticEditorFlags flags = GameObjectUtility.GetStaticEditorFlags(transform.gameObject);
-                    if ((flags & StaticEditorFlags.OccludeeStatic) == 0)
-                    {
-                        dirtflg = true;
-                        inValidObjectName.Add(transform.name);
-                    }
-                }
-            }
-            else
-            {
-                AddResultLog("Occludee Staticオブジェクトがありません。");
-                dirtflg = true;
-            }
-            if (inValidObjectName.Count() > 0)
-            {
-                AddResultLog("以下のOccludee Staticの設定ができていません");
-                foreach (string name in inValidObjectName)
-                {
-                    AddResultLog(" " + name);
-                }
-            }
+            
             //'Dynamic'以下のオブジェクト設定がすべて'Static'ではない
             inValidObjectName = new List<string>();
-            if (dynamic != null)
+            if (dynamicObj != null)
             {
-                Transform[] childTransforms = dynamic.GetComponentsInChildren<Transform>();
+                Transform[] childTransforms = dynamicObj.GetComponentsInChildren<Transform>();
                 foreach (Transform transform in childTransforms)
                 {
                     StaticEditorFlags flags = GameObjectUtility.GetStaticEditorFlags(transform.gameObject);

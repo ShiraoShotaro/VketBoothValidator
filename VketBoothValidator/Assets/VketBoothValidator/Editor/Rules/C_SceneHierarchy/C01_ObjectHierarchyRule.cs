@@ -13,7 +13,7 @@ namespace VketTools
     /// <summary>
     /// C.Scene内階層形式規定
     /// 01.シーンルートにベースフォルダと同名のオブジェクト(ブースルートオブジェクト)がある事
-    /// Occluder Static, Occludee Static, Dynamicの３つのEmptyオブジェクトを作ること
+    /// Static, Dynamicの３つのEmptyオブジェクトを作ること
     /// すべてのオブジェクトはこのどれかの階層下に入れること
     /// その他のルートオブジェクトの情報をログ出力する（エラーにはしない）
     /// </summary>
@@ -44,8 +44,7 @@ namespace VketTools
             GameObject rootBoothObject = null;
             string baseFolderName = options.baseFolder.name;
             int rootBoothObjectCount = 0;
-            int OccluderStaticCount = 0;
-            int OccludeeStaticCount = 0;
+            int StaticCount = 0;
             int DynamicCount = 0;
             int otherRootCount = 0;
             bool dirflg = false;
@@ -76,11 +75,8 @@ namespace VketTools
                 {
                     switch (child.gameObject.name)
                     {
-                        case "Occluder Static":
-                            OccluderStaticCount++;
-                            break;
-                        case "Occludee Static":
-                            OccludeeStaticCount++;
+                        case "Static":
+                            StaticCount++;
                             break;
                         case "Dynamic":
                             DynamicCount++;
@@ -92,24 +88,14 @@ namespace VketTools
                     }
                 }
 
-                if (OccluderStaticCount == 0)
+                if (StaticCount == 0)
                 {
-                    AddResultLog(string.Format("{0}オブジェクトの直下に'Occluder Static'がありません。", baseFolderName));
+                    AddResultLog(string.Format("{0}オブジェクトの直下に'Static'がありません。", baseFolderName));
                     dirflg = true;
                 }
-                else if (OccluderStaticCount > 1)
+                else if (StaticCount > 1)
                 {
-                    AddResultLog(string.Format("{0}オブジェクトの直下に'Occluder Static'が複数あります。", baseFolderName));
-                    dirflg = true;
-                }
-                if (OccludeeStaticCount == 0)
-                {
-                    AddResultLog(string.Format("{0}オブジェクトの直下に'Occludee Static'がありません。", baseFolderName));
-                    dirflg = true;
-                }
-                else if (OccludeeStaticCount > 1)
-                {
-                    AddResultLog(string.Format("{0}オブジェクトの直下に'Occludee Static'が複数あります。", baseFolderName));
+                    AddResultLog(string.Format("{0}オブジェクトの直下に'Static'が複数あります。", baseFolderName));
                     dirflg = true;
                 }
                 if (DynamicCount == 0)

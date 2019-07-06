@@ -26,7 +26,7 @@ namespace VketTools
         private string version = "2019.3d";
         private string validationLog;
         private Vector2 scroll;
-        private bool onoffBooth;
+        //private bool onoffBooth;
         private bool onlyErrorLog;
         private string sceneGuid;
         private DefaultAsset baseFolder;
@@ -66,7 +66,7 @@ namespace VketTools
                 baseFolder = null;
             }
             //On/Off booth setting
-            onoffBooth = EditorGUILayout.ToggleLeft("For On/Off Booth", onoffBooth);
+            //onoffBooth = EditorGUILayout.ToggleLeft("For On/Off Booth", onoffBooth);
             onlyErrorLog = EditorGUILayout.ToggleLeft("Error log only", onlyErrorLog);
             if (GUILayout.Button("Validate"))
             {
@@ -126,13 +126,13 @@ namespace VketTools
                 return;
             }
             //On/OffBooth
-            if (onoffBooth)
-            {
-                OutLog("For On/Off booth");
-            }
+            //if (onoffBooth)
+            //{
+            //    OutLog("For On/Off booth");
+            //}
 
             //Validation
-            Options options = new Options(baseFolder, onoffBooth, sceneGuid);
+            Options options = new Options(baseFolder, false, sceneGuid);    //onoffブースは強制的にfalse
             Utils.GetInstance().setOptons(options);
             BaseRule[] targetRules = RuleLoader.Load(options);
             int invalidRuleCount = 0;
