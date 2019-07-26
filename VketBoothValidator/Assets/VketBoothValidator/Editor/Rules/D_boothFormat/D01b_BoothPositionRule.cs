@@ -15,10 +15,10 @@ namespace VketTools
     /// 落マケようにブースサイズのみを改変
     /// 
     /// </summary>
-    public class BoothSizeRule : BaseRule
+    public class BoothPositionRule : BaseRule
     {
         //ルール名
-        public new string ruleName = "Ð01.ブースサイズ Rule";
+        public new string ruleName = "Ð01b.ブース内包 Rule";
         public override string RuleName
         {
             get
@@ -26,16 +26,18 @@ namespace VketTools
                 return ruleName;
             }
         }
-        public BoothSizeRule(Options _options) : base(_options)
+        public BoothPositionRule(Options _options) : base(_options)
         {
         }
+        
 
         //検証メソッド
         public override Result Validate()
         {
             //初期化
             base.Validate();
-            Vector3 maxBoundsSize = new Vector3(4, 5, 4);
+            Bounds outBounds = new Bounds(new Vector3(0, 2.5f, -2.0f), new Vector3(4.0001f, 5.0001f, 4.0001f));
+
             //検証ロジック
 
             Scene scene = SceneManager.GetSceneByPath(AssetDatabase.GUIDToAssetPath(options.sceneGuid));
@@ -63,23 +65,13 @@ namespace VketTools
                 Bounds child_bounds = renderer.bounds;
                 boothBounds.Encapsulate(child_bounds);
             }
-
-            AddResultLog("ブースのサイズ:" + boothBounds.size.ToString("f3"));
+            
             bool dirtFlg = false;
-
-            if (boothBounds.size.x - maxBoundsSize.x >= 0.001f)
+            
+            // ここでmin maxが範囲内か見る。
+            if(!outBounds.Contains(boothBounds.min) || !outBounds.Contains(boothBounds.max))
             {
-                AddResultLog(string.Format("幅(X)が{0}を{1:0.###}超えています。", maxBoundsSize.x, boothBounds.size.x - maxBoundsSize.x));
-                dirtFlg = true;
-            }
-            if (boothBounds.size.y - maxBoundsSize.y >= 0.001f)
-            {
-                AddResultLog(string.Format("高さ(Y)が{0}を{1:0.###}超えています。", maxBoundsSize.y, boothBounds.size.y - maxBoundsSize.y));
-                dirtFlg = true;
-            }
-            if (boothBounds.size.z - maxBoundsSize.z >= 0.001f)
-            {
-                AddResultLog(string.Format("奥行(Z)が{0}を{1:0.###}超えています。", maxBoundsSize.z, boothBounds.size.z - maxBoundsSize.z));
+                AddResultLog("指定のブース範囲に内包されていません。ブースサイズが大きすぎるか、位置が正しくありません。");
                 dirtFlg = true;
             }
 

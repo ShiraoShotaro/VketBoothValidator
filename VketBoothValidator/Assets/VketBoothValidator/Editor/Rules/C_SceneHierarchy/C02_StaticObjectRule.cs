@@ -74,8 +74,8 @@ namespace VketTools
                 foreach (Transform transform in childTransforms)
                 {
                     StaticEditorFlags flags = GameObjectUtility.GetStaticEditorFlags(transform.gameObject);
-                    if ((flags & StaticEditorFlags.OccluderStatic) == 0 ||
-                        (flags & StaticEditorFlags.OccludeeStatic) == 0 ||
+                    if (/*(flags & StaticEditorFlags.OccluderStatic) == 0 ||*/
+                        /*(flags & StaticEditorFlags.OccludeeStatic) == 0 ||*/
                         (flags & StaticEditorFlags.BatchingStatic) == 0 ||
                         (flags & StaticEditorFlags.NavigationStatic) == 0 ||
                         (flags & StaticEditorFlags.OffMeshLinkGeneration) == 0 ||
@@ -94,7 +94,7 @@ namespace VketTools
             if (inValidObjectName.Count() > 0)
             {
                 AddResultLog("以下のStaticの設定ができていません。");
-                AddResultLog("特に理由がない場合は'Occluder Static'オブジェクト以下では全てのStaticをONにしてください。");
+                AddResultLog("特に理由がない場合は'Static'オブジェクト以下では全てのStaticをONにしてください。");
                 foreach (string name in inValidObjectName)
                 {
                     AddResultLog(" " + name);

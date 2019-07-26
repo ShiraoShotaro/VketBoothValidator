@@ -45,6 +45,8 @@ namespace VketTools
             new StaticObjectRule(options),
             //D
             new BoothSizeRule(options),
+            new BoothPivotRule(options),
+            new BoothPositionRule(options),
             new NumberOfMaterialsRule(options),
             new TextureCompressionRule(options),
             //F
