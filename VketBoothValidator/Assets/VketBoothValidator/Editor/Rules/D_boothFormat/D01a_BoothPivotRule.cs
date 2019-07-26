@@ -48,6 +48,7 @@ namespace VketTools
             }
             bool dirtFlag = false;
             Bounds torelanceBounds = new Bounds(new Vector3(0, 0, 0), new Vector3(0.0001f, 0.0001f, 0.0001f));
+            Bounds torelanceScale = new Bounds(new Vector3(1.0f, 1.0f, 1.0f), new Vector3(0.0001f, 0.0001f, 0.0001f));
 
             // ルートオブジェクトの取得
             GameObject[] rootObjects = scene.GetRootGameObjects();
@@ -60,7 +61,7 @@ namespace VketTools
                         AddResultLog(string.Format("ルートオブジェクトの位置は(0, 0, 0)にしてください。現在は(x, y, z) = ({0}, {1}, {2})となっています。",
                             obj.transform.position.x, obj.transform.position.y, obj.transform.position.z));
                         dirtFlag = true;
-                        
+
                     }
                     if (!torelanceBounds.Contains(obj.transform.rotation.eulerAngles))
                     {
@@ -68,7 +69,13 @@ namespace VketTools
                             obj.transform.rotation.eulerAngles.x, obj.transform.rotation.eulerAngles.y, obj.transform.rotation.eulerAngles.z));
                         dirtFlag = true;
                     }
-                    foreach(Transform child_tr in obj.transform)
+                    if (!torelanceScale.Contains(obj.transform.localScale))
+                    {
+                        AddResultLog(string.Format("ルートオブジェクトのスケールは(0, 0, 0)にしてください。現在は(x, y, z) = ({0}, {1}, {2})となっています。",
+                            obj.transform.localScale.x, obj.transform.localScale.y, obj.transform.localScale.z));
+                        dirtFlag = true;
+                    }
+                    foreach (Transform child_tr in obj.transform)
                     {
                         var child = child_tr.gameObject;
                         if (child.name == "Dynamic" || child.name == "Static")
@@ -83,6 +90,12 @@ namespace VketTools
                             {
                                 AddResultLog(string.Format("ルート直下のオブジェクト{0}の回転は(0, 0, 0)にしてください。現在は(x, y, z) = ({1}, {2}, {3})となっています。",
                                     child.name, child.transform.rotation.eulerAngles.x, child.transform.rotation.eulerAngles.y, child.transform.rotation.eulerAngles.z));
+                                dirtFlag = true;
+                            }
+                            if (!torelanceScale.Contains(child.transform.localScale))
+                            {
+                                AddResultLog(string.Format("ルート直下のオブジェクト{0}のスケールは(0, 0, 0)にしてください。現在は(x, y, z) = ({1}, {2}, {3})となっています。",
+                                    child.name, child.transform.localScale.x, child.transform.localScale.y, child.transform.localScale.z));
                                 dirtFlag = true;
                             }
                         }
