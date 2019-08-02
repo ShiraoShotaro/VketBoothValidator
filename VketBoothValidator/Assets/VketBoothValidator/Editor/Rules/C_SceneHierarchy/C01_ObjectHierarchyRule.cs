@@ -73,12 +73,12 @@ namespace VketTools
                 List<string> otherChildObjectName = new List<string>();
                 foreach (Transform child in rootBoothObject.transform)
                 {
-                    switch (child.gameObject.name)
+                    switch (child.gameObject.name.ToLower())
                     {
-                        case "Static":
+                        case "static":
                             StaticCount++;
                             break;
-                        case "Dynamic":
+                        case "dynamic":
                             DynamicCount++;
                             break;
                         default:

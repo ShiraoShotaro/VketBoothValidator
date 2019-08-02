@@ -78,7 +78,7 @@ namespace VketTools
                     foreach (Transform child_tr in obj.transform)
                     {
                         var child = child_tr.gameObject;
-                        if (child.name == "Dynamic" || child.name == "Static")
+                        if (child.name.ToLower() == "dynamic" || child.name.ToLower() == "static")
                         {
                             if (!torelanceBounds.Contains(child.transform.position))
                             {

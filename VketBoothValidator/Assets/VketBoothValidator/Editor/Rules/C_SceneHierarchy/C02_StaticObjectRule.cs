@@ -54,12 +54,12 @@ namespace VketTools
             foreach (Transform child in rootBoothObject.transform)
             {
                 GameObject go = child.gameObject;
-                switch (go.name)
+                switch (go.name.ToLower())
                 {
-                    case "Static":
+                    case "static":
                         staticObj = go;
                         break;
-                    case "Dynamic":
+                    case "dynamic":
                         dynamicObj = go;
                         break;
                     default:
