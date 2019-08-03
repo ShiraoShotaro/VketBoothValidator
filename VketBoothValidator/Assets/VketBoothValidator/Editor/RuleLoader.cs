@@ -54,7 +54,7 @@ namespace VketTools
             new WhitelistComponentRule(options),
             new MonoBehaviorListRule(options),
             new ObjectSyncRule(options),
-            new PickupObjectRule(options),
+            //new PickupObjectRule(options), // 落マケは無効化
             new RigidbodyRule(options),
             new JointRule(options),
             new LightRule(options),
