@@ -67,9 +67,15 @@ namespace VketTools
             }
             
             bool dirtFlg = false;
-            
+
+
+            AddResultLog(string.Format("ブースバウンディングボックスの最小: ({0:0.###} >{1:0.###}, {2:0.###} >{3:0.###}, {4:0.###} >{5:0.###})",
+                boothBounds.min.x, outBounds.min.x, boothBounds.min.y, outBounds.min.y, boothBounds.min.z, outBounds.min.z));
+            AddResultLog(string.Format("ブースバウンディングボックスの最大: ({0:0.###} <{1:0.###}, {2:0.###} <{3:0.###}, {4:0.###} <{5:0.###})",
+                boothBounds.max.x, outBounds.max.x, boothBounds.max.y, outBounds.max.y, boothBounds.max.z, outBounds.max.z));
+
             // ここでmin maxが範囲内か見る。
-            if(!outBounds.Contains(boothBounds.min) || !outBounds.Contains(boothBounds.max))
+            if (!outBounds.Contains(boothBounds.min) || !outBounds.Contains(boothBounds.max))
             {
                 AddResultLog("指定のブース範囲に内包されていません。ブースサイズが大きすぎるか、位置が正しくありません。");
                 dirtFlg = true;
