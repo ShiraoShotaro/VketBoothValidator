@@ -36,7 +36,7 @@ namespace VketTools
         {
             //初期化
             base.Validate();
-            Bounds outBounds = new Bounds(new Vector3(0, 2.5f, -2.0f), new Vector3(4.0001f, 5.0001f, 4.0001f));
+            Bounds outBounds = new Bounds(new Vector3(0, 2.5f, -2.0f), new Vector3(4.01f, 5.01f, 4.01f));
 
             //検証ロジック
 
@@ -69,9 +69,9 @@ namespace VketTools
             bool dirtFlg = false;
 
 
-            AddResultLog(string.Format("ブースバウンディングボックスの最小: ({0:0.###} >{1:0.###}, {2:0.###} >{3:0.###}, {4:0.###} >{5:0.###})",
+            AddResultLog(string.Format("ブースバウンディングボックスの最小: ({0:0.000} >{1:0.000}, {2:0.000} >{3:0.000}, {4:0.000} >{5:0.000})",
                 boothBounds.min.x, outBounds.min.x, boothBounds.min.y, outBounds.min.y, boothBounds.min.z, outBounds.min.z));
-            AddResultLog(string.Format("ブースバウンディングボックスの最大: ({0:0.###} <{1:0.###}, {2:0.###} <{3:0.###}, {4:0.###} <{5:0.###})",
+            AddResultLog(string.Format("ブースバウンディングボックスの最大: ({0:0.000} <{1:0.000}, {2:0.000} <{3:0.000}, {4:0.000} <{5:0.000})",
                 boothBounds.max.x, outBounds.max.x, boothBounds.max.y, outBounds.max.y, boothBounds.max.z, outBounds.max.z));
 
             // ここでmin maxが範囲内か見る。
